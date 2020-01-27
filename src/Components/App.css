@@ -1,0 +1,30 @@
+body {
+  background-image: linear-gradient(
+    to right,
+    rgb(71, 179, 184),
+    rgb(71, 184, 105)
+  );
+  color: rgba(255, 255, 255);
+  display: flex;
+  justify-content: center;
+}
+
+.Logo {
+  position: absolute;
+  left: 3rem;
+  top: 3rem;
+}
+
+.Nav {
+  position: absolute;
+  top: 31.5px;
+  right: 2rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 166px;
+}

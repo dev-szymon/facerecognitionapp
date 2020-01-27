@@ -1,0 +1,14 @@
+.Logo {
+  height: 100px;
+  width: 100px;
+  box-shadow: 10px 5px 10px black;
+  background-image: linear-gradient(
+    to right,
+    rgb(71, 179, 184),
+    rgb(71, 184, 105)
+  );
+}
+
+.Logo img {
+  width: 100%;
+}

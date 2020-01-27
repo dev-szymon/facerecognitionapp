@@ -1,0 +1,25 @@
+.LinkForm {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LinkForm input {
+  width: 40rem;
+  height: 2rem;
+  text-align: center;
+}
+
+.LinkForm button {
+  background-color: rgb(39, 177, 108);
+  font-family: Helvetica;
+  border-radius: 5px;
+  border: none;
+  margin-left: 3px;
+  height: 38px;
+  width: 5rem;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}

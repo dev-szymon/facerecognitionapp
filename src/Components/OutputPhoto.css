@@ -1,0 +1,22 @@
+.OutputPhoto {
+  position: relative;
+  margin-top: 10px;
+  max-width: 60vw;
+  min-height: 20vh;
+  border: solid 2px rgb(39, 177, 108);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  max-width: 100%;
+  max-height: 400px;
+}
+
+.FaceOutline {
+  display: inline-block;
+  position: absolute;
+  box-sizing: border-box;
+  border: 3px solid yellow;
+}
