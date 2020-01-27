@@ -18,19 +18,27 @@ class App extends Component {
     this.state = {
       input: "",
       outputPhoto: "",
-      box: {}
+      box: null
     };
   }
 
-  calculateBox = data => {
+  calculateBox = data =>
+    data.outputs[0].data.regions.map(r => r.region_info.bounding_box);
+
+  passStateBoxes = array => {
+    this.setState({ box: array });
+    console.log(this.state.box);
+  };
+
+  onInputChange = event => {
+    this.setState({ input: event.target.value });
+  };
+
+  multipleFaces = faces => {
     const inputimage = document.getElementById("inputimage");
     const width = Number(inputimage.width);
     const height = Number(inputimage.height);
-
-    const boxBoundries = data.outputs.map(o =>
-      o.data.regions.map(r => r.region_info.bounding_box)
-    );
-    boxBoundries.forEach(b => {
+    faces.forEach(b => {
       return {
         topBorder: height * Number(b.top_row) + "px",
         leftBorder: width * Number(b.left_col) + "px",
@@ -40,24 +48,14 @@ class App extends Component {
     });
   };
 
-  passStateBox = box => {
-    this.setState({ box: box });
-  };
-
-  onInputChange = event => {
-    this.setState({ input: event.target.value });
-  };
-
   onButtonSubmit = () => {
     this.setState({ outputPhoto: this.state.input });
 
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
-      .then(items =>
-        items.forEach(response =>
-          this.passStateBox(this.calculateBox(response))
-        )
-      )
+      .then(response => {
+        this.passStateBoxes(this.multipleFaces(this.calculateBox(response)));
+      })
       .catch(err => console.log(err));
   };
 
@@ -73,7 +71,7 @@ class App extends Component {
             onButtonSubmit={this.onButtonSubmit}
           />
           <OutputPhoto
-            FaceBox={this.state.box}
+            FaceBoxes={this.state.box}
             imageSrc={this.state.outputPhoto}
           />
         </div>

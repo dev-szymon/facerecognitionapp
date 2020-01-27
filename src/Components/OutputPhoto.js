@@ -1,10 +1,10 @@
 import React from "react";
 import "./OutputPhoto.css";
 
-function OutputPhoto({ imageSrc, FaceBox }) {
+function OutputPhoto({ imageSrc, FaceBoxes }) {
   return (
     <div className="OutputPhoto">
-      {this.state.FaceBox.forEach(f => {
+      {/* {FaceBox.forEach(f => {
         return (
           <div
             className="FaceOutline"
@@ -16,7 +16,8 @@ function OutputPhoto({ imageSrc, FaceBox }) {
             }}
           ></div>
         );
-      })}
+      })} */}
+
       <img id="inputimage" src={imageSrc} alt="face recognized" />
     </div>
   );
