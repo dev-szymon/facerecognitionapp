@@ -23,22 +23,21 @@ class App extends Component {
   }
 
   calculateBox = data => {
-    const clarifyFace =
-      data.outputs[0].data.regions[0].region_info.bounding_box;
     const inputimage = document.getElementById("inputimage");
     const width = Number(inputimage.width);
     const height = Number(inputimage.height);
-    return {
-      topBorder: height * Number(clarifyFace.top_row) + "px",
-      leftBorder: width * Number(clarifyFace.left_col) + "px",
-      heightFace:
-        height *
-          (Number(clarifyFace.bottom_row) - Number(clarifyFace.top_row)) +
-        "px",
-      widthFace:
-        width * (Number(clarifyFace.right_col) - Number(clarifyFace.left_col)) +
-        "px"
-    };
+
+    const boxBoundries = data.outputs.map(o =>
+      o.data.regions.map(r => r.region_info.bounding_box)
+    );
+    boxBoundries.forEach(b => {
+      return {
+        topBorder: height * Number(b.top_row) + "px",
+        leftBorder: width * Number(b.left_col) + "px",
+        heightFace: height * (Number(b.bottom_row) - Number(b.top_row)) + "px",
+        widthFace: width * (Number(b.right_col) - Number(b.left_col)) + "px"
+      };
+    });
   };
 
   passStateBox = box => {
@@ -54,7 +53,11 @@ class App extends Component {
 
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
-      .then(response => this.passStateBox(this.calculateBox(response)))
+      .then(items =>
+        items.forEach(response =>
+          this.passStateBox(this.calculateBox(response))
+        )
+      )
       .catch(err => console.log(err));
   };
 
