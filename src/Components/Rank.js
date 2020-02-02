@@ -4,7 +4,7 @@ import "./Rank.css";
 function Rank() {
   return (
     <div className="Rank">
-      <p>Szymon, your ranking is x out of many.</p>
+      <p>Paste image URL to detect faces!</p>
     </div>
   );
 }

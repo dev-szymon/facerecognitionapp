@@ -1,6 +1,5 @@
 .OutputPhoto {
   position: relative;
-  margin-top: 10px;
   max-width: 60vw;
   min-height: 20vh;
   border: solid 2px rgb(39, 177, 108);
@@ -19,4 +18,5 @@ img {
   position: absolute;
   box-sizing: border-box;
   border: 3px solid yellow;
+  z-index: 2;
 }

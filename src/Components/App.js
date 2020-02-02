@@ -6,6 +6,7 @@ import LinkForm from "./LinkForm";
 import Rank from "./Rank";
 import OutputPhoto from "./OutputPhoto";
 import Clarifai from "clarifai";
+import FaceOutline from "./FaceOutline";
 
 // use clarifai.com
 const app = new Clarifai.App({
@@ -18,7 +19,7 @@ class App extends Component {
     this.state = {
       input: "",
       outputPhoto: "",
-      box: null
+      box: []
     };
   }
 
@@ -27,7 +28,6 @@ class App extends Component {
 
   passStateBoxes = array => {
     this.setState({ box: array });
-    console.log(this.state.box);
   };
 
   onInputChange = event => {
@@ -38,19 +38,20 @@ class App extends Component {
     const inputimage = document.getElementById("inputimage");
     const width = Number(inputimage.width);
     const height = Number(inputimage.height);
-    faces.forEach(b => {
-      return {
+    let arr = [];
+    faces.forEach(b =>
+      arr.push({
         topBorder: height * Number(b.top_row) + "px",
         leftBorder: width * Number(b.left_col) + "px",
         heightFace: height * (Number(b.bottom_row) - Number(b.top_row)) + "px",
         widthFace: width * (Number(b.right_col) - Number(b.left_col)) + "px"
-      };
-    });
+      })
+    );
+    return arr;
   };
 
   onButtonSubmit = () => {
     this.setState({ outputPhoto: this.state.input });
-
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
       .then(response => {
@@ -70,10 +71,12 @@ class App extends Component {
             onInputChange={this.onInputChange}
             onButtonSubmit={this.onButtonSubmit}
           />
-          <OutputPhoto
-            FaceBoxes={this.state.box}
-            imageSrc={this.state.outputPhoto}
-          />
+          <div className="image-container">
+            <OutputPhoto imageSrc={this.state.outputPhoto} />
+            {this.state.box.map((faceBox, i) => {
+              return <FaceOutline faceBox={faceBox} key={i} />;
+            })}
+          </div>
         </div>
       </div>
     );

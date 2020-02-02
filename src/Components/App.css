@@ -28,3 +28,10 @@ body {
   align-items: center;
   padding-top: 166px;
 }
+
+.image-container {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  top: 325px;
+}
