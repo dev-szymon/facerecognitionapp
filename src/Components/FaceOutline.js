@@ -9,8 +9,8 @@ function FaceOutline({ faceBox }) {
       style={{
         top: faceBox.topBorder,
         left: faceBox.leftBorder,
-        width: faceBox.heightFace,
-        height: faceBox.widthFace
+        height: faceBox.heightFace,
+        width: faceBox.widthFace
       }}
     ></div>
   );
