@@ -1,0 +1,56 @@
+form {
+  color: white;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+form fieldset {
+  border: 2px white solid;
+}
+
+fieldset div {
+  display: flex;
+  justify-content: flex-end;
+  align-items: space-between;
+}
+fieldset div {
+  margin: 2px 0;
+}
+
+fieldset label {
+  margin-right: 10px;
+}
+
+fieldset input {
+  width: 200px;
+  background-color: black;
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+form div {
+  margin-left: 30px;
+}
+
+.btn {
+  margin-right: 10px;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+  border: 2px solid white;
+  box-shadow: 5px 5px 10px black;
+  background-color: black;
+  cursor: pointer;
+  /* background-image: linear-gradient(
+    to right,
+    rgb(71, 179, 184),
+    rgb(71, 184, 105)
+  ); */
+}

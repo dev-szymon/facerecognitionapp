@@ -21,6 +21,11 @@ body {
   right: 2rem;
 }
 
+.SignInForm {
+  position: relative;
+  top: 25vh;
+}
+
 .container {
   display: flex;
   flex-direction: column;

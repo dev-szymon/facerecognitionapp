@@ -7,6 +7,7 @@ import Rank from "./Rank";
 import OutputPhoto from "./OutputPhoto";
 import Clarifai from "clarifai";
 import FaceOutline from "./FaceOutline";
+import SignInForm from "./SignInForm";
 
 // use clarifai.com
 const app = new Clarifai.App({
@@ -19,9 +20,18 @@ class App extends Component {
     this.state = {
       input: "",
       outputPhoto: "",
-      box: []
+      box: [],
+      route: "sign in"
     };
   }
+
+  goHome = () => {
+    this.setState({ route: "home" });
+  };
+
+  goOut = () => {
+    this.setState({ route: "sign in" });
+  };
 
   calculateBox = data =>
     data.outputs[0].data.regions.map(r => r.region_info.bounding_box);
@@ -64,20 +74,24 @@ class App extends Component {
     return (
       <div className="App">
         <Logo />
-        <Nav />
-        <div className="container">
-          <Rank />
-          <LinkForm
-            onInputChange={this.onInputChange}
-            onButtonSubmit={this.onButtonSubmit}
-          />
-          <div className="image-container">
-            <OutputPhoto imageSrc={this.state.outputPhoto} />
-            {this.state.box.map((faceBox, i) => {
-              return <FaceOutline faceBox={faceBox} key={i} />;
-            })}
+        <Nav goHome={this.goHome} goOut={this.goOut} route={this.state.route} />
+        {this.state.route === "sign in" ? (
+          <SignInForm goHome={this.goHome} />
+        ) : (
+          <div className="container">
+            <Rank />
+            <LinkForm
+              onInputChange={this.onInputChange}
+              onButtonSubmit={this.onButtonSubmit}
+            />
+            <div className="image-container">
+              <OutputPhoto imageSrc={this.state.outputPhoto} />
+              {this.state.box.map((faceBox, i) => {
+                return <FaceOutline faceBox={faceBox} key={i} />;
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }
