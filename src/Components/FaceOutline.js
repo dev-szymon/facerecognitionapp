@@ -2,7 +2,6 @@ import React from "react";
 import "./OutputPhoto.css";
 
 function FaceOutline({ faceBox }) {
-  console.log(faceBox);
   return (
     <div
       className="FaceOutline"

@@ -6,7 +6,7 @@ function SignInForm({ goHome }) {
     <main className="SignInForm">
       <form>
         <fieldset id="sign_up">
-          <legend>Sign In</legend>
+          <legend>Welcome to face recognition app</legend>
           <div>
             <label htmlFor="email-address">Email</label>
             <input type="email" name="email-address" id="email-address" />
@@ -28,7 +28,7 @@ function SignInForm({ goHome }) {
             type="submit"
             value="Sign in"
           />
-          <input className="btn" type="submit" value="Sign up" />
+          <input className="btn" type="submit" value="Register" />
         </div>
         {/* <div>
           <a href="#0">Sign up</a>

@@ -9,7 +9,9 @@ function LinkForm({ onInputChange, onButtonSubmit }) {
         placeholder="enter URL"
         onChange={onInputChange}
       ></input>
-      <button onClick={onButtonSubmit}>Detect</button>
+      <button id="submit-btn" onClick={onButtonSubmit}>
+        Detect
+      </button>
     </div>
   );
 }

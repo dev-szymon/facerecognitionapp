@@ -70,7 +70,12 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  adjust() {
+    window.addEventListener("resize", this.onButtonSubmit);
+  }
+
   render() {
+    this.adjust();
     return (
       <div className="App">
         <Logo />
